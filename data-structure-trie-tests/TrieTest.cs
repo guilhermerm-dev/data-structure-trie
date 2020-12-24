@@ -7,15 +7,15 @@ namespace data_structure_trie_tests
     [TestClass]
     public class TrieTest
     {
+        private readonly string[] _words = { "mouse", "screen", "board", "hat", "car", "card" };
 
         [TestMethod]
         public void InsertWords()
         {
             Trie trie = new Trie();
             bool allWordsInserted = true;
-            string[] words = { "mouse", "screen", "board", "hat", "car", "card" };
-            words.ToList().ForEach(word => trie.Insert(word));
-            words.ToList().ForEach(word =>
+            _words.ToList().ForEach(word => trie.Insert(word));
+            _words.ToList().ForEach(word =>
             {
                 if (!trie.Search(word))
                     allWordsInserted = false;
@@ -27,8 +27,7 @@ namespace data_structure_trie_tests
         public void SearchForWordThatExists()
         {
             Trie trie = new Trie();
-            string[] words = { "mouse", "screen", "board", "hat", "car", "card" };
-            words.ToList().ForEach(word => trie.Insert(word));
+            _words.ToList().ForEach(word => trie.Insert(word));
             bool result = trie.Search("mouse");
             Assert.IsTrue(result);
         }
@@ -37,9 +36,26 @@ namespace data_structure_trie_tests
         public void SearchForWordThatNotExists()
         {
             Trie trie = new Trie();
-            string[] words = { "mouse", "screen", "board", "hat", "car", "card" };
-            words.ToList().ForEach(word => trie.Insert(word));
+            _words.ToList().ForEach(word => trie.Insert(word));
             bool result = trie.Search("book");
+            Assert.IsFalse(result);
+        }
+
+        [TestMethod]
+        public void SearchForPrefixThatExists()
+        {
+            Trie trie = new Trie();
+            _words.ToList().ForEach(word => trie.Insert(word));
+            bool result = trie.StartsWith("mo");
+            Assert.IsTrue(result);
+        }
+
+        [TestMethod]
+        public void SearchForPrefixThatNotExists()
+        {
+            Trie trie = new Trie();
+            _words.ToList().ForEach(word => trie.Insert(word));
+            bool result = trie.Search("tra");
             Assert.IsFalse(result);
         }
     }
