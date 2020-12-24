@@ -12,7 +12,7 @@ namespace data_structure_trie
         public Dictionary<char, Node> Children
         {
             get;
-            private set;
+            set;
         }
 
         public bool IsCompleteWord

@@ -24,7 +24,6 @@ namespace data_structure_trie
                     child = new Node();
                     current.Children.Add(c, child);
                 }
-                    
                 current = child;
             }
             current.IsCompleteWord = true;
@@ -54,9 +53,5 @@ namespace data_structure_trie
             return current;
         }
 
-        //public int GetWordsCountStartsWithPrefix(string prefix)
-        //{
-
-        //}
     }
 }
