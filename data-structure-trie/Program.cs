@@ -1,47 +1,24 @@
 ﻿using System;
+using System.Linq;
 
 namespace data_structure_trie
 {
     class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
+            string[] words = { "computer", "mouse", "board" };
             Trie trie = new Trie();
-            trie.Insert("computer");
-            trie.Insert("mouse");
-            trie.Insert("board");
+            words.ToList().ForEach(word => trie.Insert(word));
 
-            string nameToSearch = "computer";
-            if (trie.Search(nameToSearch))
-            {
-                Console.WriteLine($"Found {nameToSearch}");
-            }
-            else
-            {
-                Console.WriteLine($"Not found {nameToSearch}");
-            }
+            if (trie.Search("computer"))
+                Console.WriteLine("Word found!");
 
-            nameToSearch = "screen";
-            if (trie.Search(nameToSearch))
-            {
-                Console.WriteLine($"Found {nameToSearch}");
-            }
-            else
-            {
-                Console.WriteLine($"Not found {nameToSearch}");
-            }
+            if (trie.Search("horse"))
+                Console.WriteLine("Word found!");
 
-            string prefixToSearch = "mo";
-            if (trie.StartsWith(prefixToSearch))
-            {
-                Console.WriteLine($"Found word with prefix {prefixToSearch}");
-            }
-            else
-            {
-                Console.WriteLine($"Not Found word with prefix {prefixToSearch}");
-            }
-
-            Console.ReadKey();
+            if (trie.StartsWith("yo"))
+                Console.WriteLine("Prefix found!");
         }
     }
 }
