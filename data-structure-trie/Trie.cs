@@ -15,7 +15,7 @@ namespace data_structure_trie
         public void Insert(string word)
         {
             Node current = Root;
-            char[] characteres = word.ToCharArray();
+            char[] characteres = word.ToLower().ToCharArray();
             foreach (char c in characteres)
             {
                 Node child = current.Children.GetValueOrDefault(c);
@@ -31,19 +31,19 @@ namespace data_structure_trie
 
         public bool Search(string word)
         {
-            Node node = GetNode(word);
+            Node node = GetNode(word.ToLower());
             return GetNode(word) is not null && node.IsCompleteWord;
         }
 
         public bool StartsWith(string prefix)
         {
-            return GetNode(prefix) is not null;
+            return GetNode(prefix.ToLower()) is not null;
         }
 
         private Node GetNode(string word)
         {
             Node current = Root;
-            char[] characteres = word.ToCharArray();
+            char[] characteres = word.ToLower().ToCharArray();
             foreach (var c in characteres)
             {
                 Node child = current.Children.GetValueOrDefault(c);
